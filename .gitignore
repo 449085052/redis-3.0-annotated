@@ -1,6 +1,7 @@
 .*.swp
 *.o
 *.log
+*.exe
 dump.rdb
 redis-benchmark
 redis-check-aof
@@ -25,3 +26,6 @@ deps/lua/src/liblua.a
 .make-*
 .prerequisites
 *.dSYM
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/vcs.xml

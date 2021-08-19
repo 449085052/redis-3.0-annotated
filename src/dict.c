@@ -362,7 +362,7 @@ int dictRehash(dict *d, int n) {
         dictEntry *de, *nextde;
 
         /* Check if we already rehashed the whole table... */
-        // 如果 0 号哈希表为空，那么表示 rehash 执行完毕
+        // 如果 0 号哈希表为空，那么表示 rehash 执行完毕，将1号哈希表设置为新的0号哈希表，然后将1号哈希表清空、重置，最后关闭rehashidx标识
         // T = O(1)
         if (d->ht[0].used == 0) {
             // 释放 0 号哈希表
@@ -1473,6 +1473,8 @@ static int _dictKeyIndex(dict *d, const void *key)
     // 计算 key 的哈希值
     h = dictHashKey(d, key);
     // T = O(1)
+
+    // 此处table <= 1，是因为每个字段都包含了两个哈希表
     for (table = 0; table <= 1; table++) {
 
         // 计算索引值
